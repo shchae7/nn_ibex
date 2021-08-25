@@ -6,13 +6,19 @@ using namespace ibex;
 
 int main(int argc, char** argv)
 {
-    System system("../bch_files/tests/test_2.bch");
+    System system(argv[1]);
 
-   /* Build a default solver for the system and with a precision set to 0.0001*/
-   DefaultSolver solver(system,0.0001);
+    DefaultSolver solver(system,0.0001);
 
-   solver.solve(system.box); // Run the solver
+    // stop_at_first option used
+    solver.solve(system.box, true);
 
-   /* Display the solutions. */
-    cout << solver.get_data() << endl;
+    ofstream result_file;
+    result_file.open(argv[2]);
+    result_file << "cpu time used: " << solver.get_time() << endl
+                << "number of cells: " << solver.get_nb_cells() << endl << endl
+                << solver.get_data() << endl;
+    result_file.close();
+
+    return 0;
 }
