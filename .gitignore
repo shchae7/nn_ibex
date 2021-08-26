@@ -1,3 +1,4 @@
 **/__pycache__
 
-src/verify_nn
+src/default_verify
+src/custom_verify

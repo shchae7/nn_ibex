@@ -15,7 +15,10 @@ int main(int argc, char** argv)
 
     ofstream result_file;
     result_file.open(argv[2]);
-    result_file << "cpu time used: " << solver.get_time() << endl
+    result_file << "number of solution boxes: " << solver.get_data().nb_solution() << endl
+                << "number of boundary boxes: " << solver.get_data().nb_boundary() << endl
+                << "number of unknown boxes: " << solver.get_data().nb_unknown() << endl
+                << "cpu time used: " << solver.get_time() << endl
                 << "number of cells: " << solver.get_nb_cells() << endl << endl
                 << solver.get_data() << endl;
     result_file.close();
